@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: openclaw-whatsapp-bot
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile.render
+    envVars:
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: PORT
+        value: 10000
+    healthCheckPath: /

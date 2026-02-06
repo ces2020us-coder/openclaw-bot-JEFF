@@ -1,0 +1,20 @@
+{
+  "agent": {
+    "model": "anthropic/claude-sonnet-4-5",
+    "apiKey": "${ANTHROPIC_API_KEY}"
+  },
+  "gateway": {
+    "port": 10000,
+    "verbose": true
+  },
+  "channels": {
+    "whatsapp": {
+      "enabled": true,
+      "autoReply": true,
+      "replyDelay": 1000
+    }
+  },
+  "workspace": {
+    "path": "/root/.openclaw/workspace"
+  }
+}
