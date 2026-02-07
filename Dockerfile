@@ -15,4 +15,4 @@ EXPOSE 10000
 HEALTHCHECK --interval=30s --timeout=10s --start-period=60s \
   CMD curl -f http://localhost:10000/ || exit 1
 
-CMD ["sh", "-c", "openclaw onboard --install-daemon || true && openclaw gateway --port ${PORT:-10000} --verbose"]
+CMD ["sh", "-c", "openclaw doctor --fix 2>/dev/null; openclaw gateway --port ${PORT:-10000}"]
