@@ -7,6 +7,8 @@ services:
     envVars:
       - key: ANTHROPIC_API_KEY
         sync: false
+      - key: OPENCLAW_GATEWAY_TOKEN
+        sync: false
       - key: PORT
         value: 10000
     healthCheckPath: /

@@ -13,10 +13,15 @@ WORKDIR /app
 RUN npm install -g openclaw@latest
 
 # 创建配置目录
-RUN mkdir -p /root/.openclaw
+RUN mkdir -p /root/.openclaw/{logs,data,skills,workspace,credentials} \
+    /root/.openclaw/agents/main/sessions
 
 # 复制配置文件
 COPY openclaw-config.json /root/.openclaw/openclaw.json
+
+# 复制启动脚本
+COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
 # 暴露端口
 EXPOSE 10000
@@ -26,4 +31,4 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
   CMD curl -f http://localhost:10000/ || exit 1
 
 # 启动脚本
-CMD ["sh", "-c", "openclaw onboard --install-daemon || true && openclaw gateway --port ${PORT:-10000} --verbose"]
+ENTRYPOINT ["docker-entrypoint.sh"]

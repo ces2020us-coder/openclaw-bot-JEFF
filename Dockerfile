@@ -6,15 +6,19 @@ WORKDIR /app
 
 RUN npm install -g openclaw@latest
 
-RUN mkdir -p /root/.openclaw/workspace /root/.openclaw/logs /root/.openclaw/data /root/.openclaw/skills /root/.openclaw/agents && \
+RUN mkdir -p /root/.openclaw/{workspace,logs,data,skills,credentials} \
+    /root/.openclaw/agents/main/sessions && \
     chmod 700 /root/.openclaw
 
 COPY config.json /root/.openclaw/openclaw.json
 RUN chmod 600 /root/.openclaw/openclaw.json
+
+COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
 EXPOSE 10000
 
 HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=5 \
   CMD curl -f http://localhost:${PORT:-10000}/ || exit 1
 
-CMD ["sh", "-c", "chmod 700 /root/.openclaw && chmod 600 /root/.openclaw/openclaw.json && openclaw doctor --fix 2>/dev/null || true; exec openclaw gateway --port ${PORT:-10000}"]
+ENTRYPOINT ["docker-entrypoint.sh"]

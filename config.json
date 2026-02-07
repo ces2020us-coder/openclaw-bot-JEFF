@@ -9,7 +9,11 @@
   "gateway": {
     "port": 10000,
     "mode": "local",
-    "bind": "0.0.0.0"
+    "bind": "0.0.0.0",
+    "auth": {
+      "mode": "token",
+      "token": "${OPENCLAW_GATEWAY_TOKEN}"
+    }
   },
   "channels": {
     "whatsapp": {}

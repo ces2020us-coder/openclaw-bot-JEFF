@@ -8,7 +8,12 @@
   },
   "gateway": {
     "port": 10000,
-    "verbose": true
+    "bind": "0.0.0.0",
+    "verbose": true,
+    "auth": {
+      "mode": "token",
+      "token": "${OPENCLAW_GATEWAY_TOKEN}"
+    }
   },
   "channels": {
     "whatsapp": {
