@@ -16,6 +16,10 @@
     }
   },
   "channels": {
-    "whatsapp": {}
+    "whatsapp": {
+      "enabled": true,
+      "autoReply": true,
+      "replyDelay": 1000
+    }
   }
 }
