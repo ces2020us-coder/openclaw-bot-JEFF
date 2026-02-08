@@ -17,9 +17,7 @@
   },
   "channels": {
     "whatsapp": {
-      "enabled": true,
-      "autoReply": true,
-      "replyDelay": 1000
+      "dmPolicy": "pairing"
     }
   },
   "workspace": {
