@@ -10,6 +10,9 @@
     "port": 10000,
     "bind": "lan",
     "verbose": true,
+    "controlUi": {
+      "dangerouslyDisableDeviceAuth": true
+    },
     "auth": {
       "mode": "token",
       "token": "${OPENCLAW_GATEWAY_TOKEN}"
